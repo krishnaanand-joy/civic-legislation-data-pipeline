@@ -10,7 +10,7 @@ The project demonstrates how messy legislative information can be converted into
 
 This public version uses mock data, public examples, and sanitized code. It does **not** include proprietary Pinion code, private infrastructure, API keys, internal prompts, production database schemas, credentials, user data, or non-public platform information.
 
-## Why this project matters
+## Why this project matters 
 
 Legislative information is public, but it is often difficult for ordinary citizens to understand or use.
 

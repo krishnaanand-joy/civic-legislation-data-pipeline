@@ -1,0 +1,5 @@
+bill_id,bill_number,title,chamber,sponsor,status,last_action_date,source_url,raw_description
+MOCK-001,HB 101,Community Health Access Act,House,Rep. Sample A,In committee,2026-06-12,https://example.gov/bills/HB101,"A bill relating to access to community health resources, reporting requirements, and coordination between public agencies."
+MOCK-002,SB 204,Small Business Permit Modernization Act,Senate,Sen. Sample B,Passed chamber,2026-06-18,https://example.gov/bills/SB204,"A bill to simplify permit application processes for small businesses and require digital submission options."
+MOCK-003,HB 315,Public Transit Safety and Access Act,House,Rep. Sample C,Introduced,2026-06-21,https://example.gov/bills/HB315,"A bill concerning transit safety improvements, service access, and reporting on transportation infrastructure needs."
+MOCK-004,SB 410,Housing Redevelopment Incentive Act,Senate,Sen. Sample D,In committee,2026-06-25,https://example.gov/bills/SB410,"A bill to encourage redevelopment of underused properties for housing and mixed-use community development."

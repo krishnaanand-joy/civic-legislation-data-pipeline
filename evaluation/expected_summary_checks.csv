@@ -1,0 +1,5 @@
+bill_id,expected_policy_area,must_mention,human_review_expected
+MOCK-001,Health,community health,true
+MOCK-002,Economic development,permit,true
+MOCK-003,Transportation,transit,true
+MOCK-004,Housing,redevelopment,true

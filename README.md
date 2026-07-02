@@ -57,12 +57,22 @@ This repository includes a small mock data workflow that shows how raw legislati
 **Architecture notes:** [`docs/architecture.md`](docs/architecture.md)  
 **Data dictionary:** [`docs/data_dictionary.md`](docs/data_dictionary.md)
 
+To run the basic data-structuring workflow locally:
+
+```bash
+pip install -r requirements.txt
+python src/structure_legislation.py
+```
+
 ## Claude-powered summarization module
 
-This repo includes an optional Claude API-powered summarization module.
+This repo also includes an optional Claude API-powered summarization module.
+
+The Claude module is designed to show prompt design, source-grounded summarization, review flags, and basic output evaluation. Generated summaries are treated as drafts requiring human review, not final legal or policy conclusions.
 
 **Prompt:** [`prompts/bill_summarization_prompt.md`](prompts/bill_summarization_prompt.md)  
 **Claude summarizer:** [`src/claude_bill_summarizer.py`](src/claude_bill_summarizer.py)  
+**Claude example outputs:** [`outputs/claude_summary_examples.csv`](outputs/claude_summary_examples.csv)  
 **Evaluation checks:** [`evaluation/expected_summary_checks.csv`](evaluation/expected_summary_checks.csv)  
 **Evaluation script:** [`src/evaluate_summaries.py`](src/evaluate_summaries.py)  
 **Claude workflow notes:** [`CLAUDE.md`](CLAUDE.md)
@@ -73,11 +83,12 @@ To run the Claude summarizer:
 pip install -r requirements.txt
 export ANTHROPIC_API_KEY="your-key-here"
 python src/claude_bill_summarizer.py
-To run the workflow locally:
+```
+
+Then evaluate the outputs:
 
 ```bash
-pip install -r requirements.txt
-python src/structure_legislation.py
+python src/evaluate_summaries.py
 ```
 
 The demo uses fictional bill records and exists only to show the structure of the workflow.
@@ -104,6 +115,7 @@ The point is not only to collect data, but to make legislative information easie
 ```text
 civic-legislation-data-pipeline/
 │
+├── CLAUDE.md
 ├── README.md
 ├── requirements.txt
 │
@@ -111,15 +123,25 @@ civic-legislation-data-pipeline/
 │   ├── sample_bills_raw.csv
 │   └── sample_bills_structured.csv
 │
-├── src/
-│   └── structure_legislation.py
+├── docs/
+│   ├── architecture.md
+│   └── data_dictionary.md
+│
+├── evaluation/
+│   └── expected_summary_checks.csv
 │
 ├── outputs/
-│   └── structured_bill_output.csv
+│   ├── claude_summary_examples.csv
+│   ├── structured_bill_output.csv
+│   └── summary_evaluation_results.csv
 │
-└── docs/
-    ├── architecture.md
-    └── data_dictionary.md
+├── prompts/
+│   └── bill_summarization_prompt.md
+│
+└── src/
+    ├── claude_bill_summarizer.py
+    ├── evaluate_summaries.py
+    └── structure_legislation.py
 ```
 
 ## Data model
@@ -142,7 +164,7 @@ A structured bill record includes fields such as:
 
 ## Technical approach
 
-The demo script performs a simplified version of a legislative-data pipeline:
+The basic demo script performs a simplified version of a legislative-data pipeline:
 
 1. Loads mock raw bill records from CSV
 2. Validates required fields
@@ -153,7 +175,17 @@ The demo script performs a simplified version of a legislative-data pipeline:
 7. Adds a review status field
 8. Exports a structured CSV output
 
-This is intentionally lightweight. The goal is to demonstrate the workflow and design logic, not to reproduce a production system.
+The Claude-powered module adds an AI-assisted layer:
+
+1. Loads the same mock bill records
+2. Sends each record to Claude using a reusable prompt
+3. Requests structured JSON output
+4. Extracts a plain-English summary, policy area, confidence level, and human-review reason
+5. Marks uncertain or incomplete outputs for review
+6. Saves example AI-generated outputs
+7. Runs lightweight evaluation checks against expected concepts
+
+This is intentionally lightweight. The goal is to demonstrate workflow design, AI-assisted summarization, reviewability, and civic-data judgment, not to reproduce a production system.
 
 ## Responsible AI and civic-data approach
 
@@ -167,6 +199,7 @@ This project is designed around several principles:
 - Avoid overstating what a bill does
 - Preserve original legislative context
 - Make structured outputs auditable
+- Evaluate AI outputs instead of assuming they are correct
 - Prioritize clarity without sacrificing accuracy
 
 ## What is intentionally excluded
@@ -189,7 +222,10 @@ This repository does **not** include:
 - Legislative data structuring
 - Public-data workflow design
 - Python data cleaning
-- AI-assisted summarization concepts
+- Claude API integration
+- Prompt design
+- AI-assisted summarization
+- Output evaluation
 - Source tracking
 - Responsible AI documentation
 - Public-interest technology
@@ -199,4 +235,4 @@ This repository does **not** include:
 
 This project reflects my broader interest in civic technology and public-impact AI: taking complex public systems and making them easier for people to understand, navigate, and use.
 
-The technical challenge is not just automation. It is building a workflow that respects accuracy, transparency, and public trust while making legislative information more accessible.
+The technical challenge is not just automation. It is building a workflow that respects accuracy, transparency, human review, and public trust while making legislative information more accessible.

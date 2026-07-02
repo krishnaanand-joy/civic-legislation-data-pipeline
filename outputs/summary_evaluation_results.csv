@@ -1,0 +1,5 @@
+bill_id,expected_policy_area,generated_policy_area,policy_area_match,must_mention,must_mention_present,human_review_expected,human_review_required,human_review_match,passes_basic_checks,notes
+MOCK-001,Health,Health,true,community health,true,true,true,true,true,Passes basic evaluation checks.
+MOCK-002,Economic development,Economic development,true,permit,true,true,true,true,true,Passes basic evaluation checks.
+MOCK-003,Transportation,Transportation,true,transit,true,true,true,true,true,Passes basic evaluation checks.
+MOCK-004,Housing,Housing,true,redevelopment,true,true,true,true,true,Passes basic evaluation checks.

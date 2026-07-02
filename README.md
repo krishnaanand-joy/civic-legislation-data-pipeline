@@ -1,12 +1,12 @@
 # Civic Legislation Data Pipeline
 
-Sanitized civic-tech demo for turning public legislative records into structured, usable bill data.
+Sanitized civic-tech demo for turning public legislative records into structured, reviewable bill data.
 
 ## Overview
 
 This repository presents a public, sanitized version of a legislative-data workflow inspired by civic-engagement work at Pinion.
 
-The project demonstrates how messy legislative information can be converted into structured civic data that supports bill tracking, summaries, search, issue tagging, and public understanding.
+The project demonstrates how messy legislative information can be converted into structured civic data that supports bill tracking, plain-English summaries, search, issue tagging, source traceability, and human review.
 
 This public version uses mock data, public examples, and sanitized code. It does **not** include proprietary Pinion code, private infrastructure, API keys, internal prompts, production database schemas, credentials, user data, or non-public platform information.
 
@@ -27,9 +27,13 @@ Cleaning and normalization
         ↓
 Structured bill fields
         ↓
-Issue tagging and summary generation
+Claude-assisted plain-English summarization
         ↓
-Searchable civic data
+Issue tagging and review flags
+        ↓
+Evaluation of generated outputs
+        ↓
+Searchable, reviewable civic data
 ```
 
 ## Project goals
@@ -44,6 +48,8 @@ The workflow is designed to:
 - Generate plain-English summaries
 - Preserve links back to source material
 - Support issue tagging for civic engagement
+- Flag uncertain records for human review
+- Evaluate AI-generated outputs instead of assuming they are correct
 - Demonstrate responsible handling of public policy data
 
 ## Working demo
@@ -75,6 +81,7 @@ The Claude module is designed to show prompt design, source-grounded summarizati
 **Claude example outputs:** [`outputs/claude_summary_examples.csv`](outputs/claude_summary_examples.csv)  
 **Evaluation checks:** [`evaluation/expected_summary_checks.csv`](evaluation/expected_summary_checks.csv)  
 **Evaluation script:** [`src/evaluate_summaries.py`](src/evaluate_summaries.py)  
+**Evaluation results:** [`outputs/summary_evaluation_results.csv`](outputs/summary_evaluation_results.csv)  
 **Claude workflow notes:** [`CLAUDE.md`](CLAUDE.md)
 
 To run the Claude summarizer:
@@ -106,7 +113,9 @@ A user should be able to start with a public bill record and end with structured
 - Policy category
 - Plain-English summary
 - Source URL
-- Confidence or review status
+- Confidence level
+- Human-review flag
+- Human-review reason
 
 The point is not only to collect data, but to make legislative information easier to understand and act on.
 
@@ -162,6 +171,14 @@ A structured bill record includes fields such as:
 | `source_url` | Link back to the original source record |
 | `review_status` | Whether the record should receive human review |
 
+The Claude-generated output adds additional review fields:
+
+| Field | Description |
+| --- | --- |
+| `confidence` | Claude-generated confidence level |
+| `human_review_required` | Whether the output should be checked before use |
+| `human_review_reason` | Explanation of why review is needed |
+
 ## Technical approach
 
 The basic demo script performs a simplified version of a legislative-data pipeline:
@@ -187,6 +204,31 @@ The Claude-powered module adds an AI-assisted layer:
 
 This is intentionally lightweight. The goal is to demonstrate workflow design, AI-assisted summarization, reviewability, and civic-data judgment, not to reproduce a production system.
 
+## Prompting approach
+
+The summarization prompt asks Claude to:
+
+- Use only the provided bill title and description
+- Avoid inventing provisions, dates, sponsors, votes, or legal effects
+- Preserve uncertainty when the source text is broad or incomplete
+- Write in neutral, nonpartisan language
+- Return structured JSON
+- Include a reason when human review is required
+
+This matters because legislative summaries can easily become misleading if a model overstates what a bill does. The prompt is designed to make the output useful while keeping it bounded by the source record.
+
+## Evaluation approach
+
+The evaluation script is not a full benchmark. It is a lightweight review system that checks whether Claude-generated outputs match expected concepts.
+
+The evaluation checks include:
+
+- Whether the generated policy area matches the expected policy area
+- Whether the summary includes an expected key concept
+- Whether the human-review flag matches the expected review setting
+
+The purpose is to show that AI-generated civic information should be tested and reviewed, not accepted automatically.
+
 ## Responsible AI and civic-data approach
 
 Legislative data affects public understanding of civic issues, so AI-assisted outputs should be treated carefully.
@@ -201,6 +243,24 @@ This project is designed around several principles:
 - Make structured outputs auditable
 - Evaluate AI outputs instead of assuming they are correct
 - Prioritize clarity without sacrificing accuracy
+
+## Known limitations
+
+This is a sanitized demo, not a production civic-data system.
+
+Current limitations include:
+
+- Mock legislative records
+- Small sample size
+- No live bill-source ingestion
+- No production database
+- No automated full-text bill parsing
+- No official legal interpretation
+- No real user data
+- Lightweight evaluation only
+- No claim that generated summaries are final or legally complete
+
+A production version would need stronger source validation, broader evaluation, human review workflows, version history, audit logging, and safeguards for high-impact civic information.
 
 ## What is intentionally excluded
 

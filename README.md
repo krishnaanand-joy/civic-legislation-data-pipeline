@@ -57,6 +57,22 @@ This repository includes a small mock data workflow that shows how raw legislati
 **Architecture notes:** [`docs/architecture.md`](docs/architecture.md)  
 **Data dictionary:** [`docs/data_dictionary.md`](docs/data_dictionary.md)
 
+## Claude-powered summarization module
+
+This repo includes an optional Claude API-powered summarization module.
+
+**Prompt:** [`prompts/bill_summarization_prompt.md`](prompts/bill_summarization_prompt.md)  
+**Claude summarizer:** [`src/claude_bill_summarizer.py`](src/claude_bill_summarizer.py)  
+**Evaluation checks:** [`evaluation/expected_summary_checks.csv`](evaluation/expected_summary_checks.csv)  
+**Evaluation script:** [`src/evaluate_summaries.py`](src/evaluate_summaries.py)  
+**Claude workflow notes:** [`CLAUDE.md`](CLAUDE.md)
+
+To run the Claude summarizer:
+
+```bash
+pip install -r requirements.txt
+export ANTHROPIC_API_KEY="your-key-here"
+python src/claude_bill_summarizer.py
 To run the workflow locally:
 
 ```bash

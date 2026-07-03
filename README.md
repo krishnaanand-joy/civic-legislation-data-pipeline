@@ -16,24 +16,17 @@ Legislative information is public, but it is often difficult for ordinary citize
 
 Bill records can be long, inconsistent, technical, and spread across multiple government sources. A civic-engagement platform needs a way to transform those records into clearer, structured information while preserving accuracy and source traceability.
 
-This project shows one approach to that problem:
+## Workflow at a glance
 
-```text
-Public legislative record
-        ↓
-Data extraction
-        ↓
-Cleaning and normalization
-        ↓
-Structured bill fields
-        ↓
-Claude-assisted plain-English summarization
-        ↓
-Issue tagging and review flags
-        ↓
-Evaluation of generated outputs
-        ↓
-Searchable, reviewable civic data
+```mermaid
+flowchart TD
+    A[Public legislative record] --> B[Data extraction]
+    B --> C[Cleaning and normalization]
+    C --> D[Structured bill fields]
+    D --> E[Claude-powered summarization]
+    E --> F[Evaluation checks]
+    F --> G[Human review flag if needed]
+    G --> H[Searchable, reviewable civic data]
 ```
 
 ## Project goals
@@ -70,6 +63,26 @@ pip install -r requirements.txt
 python src/structure_legislation.py
 ```
 
+## Before and after example
+
+This demo shows how a messy legislative record can be transformed into cleaner, more usable civic data.
+
+| Stage | Example |
+| --- | --- |
+| Raw input | Long bill title, technical description, inconsistent formatting, unclear policy category |
+| Structured output | Clean title, policy area, plain-English summary, source URL, and review status |
+| AI-assisted layer | Claude-generated summary, confidence signal, and human-review reason when needed |
+
+### Example transformed fields
+
+| Field | Raw style | Structured style |
+| --- | --- | --- |
+| Title | Long or inconsistent text | Cleaned bill title |
+| Description | Dense legislative language | Plain-English summary |
+| Policy category | Not explicit | Tagged policy area |
+| Reviewability | Not obvious | Confidence + human-review flag |
+| Traceability | Buried in source text | Source URL preserved |
+
 ## Claude-powered summarization module
 
 This repo also includes an optional Claude API-powered summarization module.
@@ -83,6 +96,23 @@ The Claude module is designed to show prompt design, source-grounded summarizati
 **Evaluation script:** [`src/evaluate_summaries.py`](src/evaluate_summaries.py)  
 **Evaluation results:** [`outputs/summary_evaluation_results.csv`](outputs/summary_evaluation_results.csv)  
 **Claude workflow notes:** [`CLAUDE.md`](CLAUDE.md)
+
+## Claude review loop
+
+```mermaid
+flowchart LR
+    A[Mock bill record] --> B[Prompt sent to Claude]
+    B --> C[Structured JSON response]
+    C --> D[Plain-English summary]
+    C --> E[Policy area]
+    C --> F[Confidence]
+    C --> G[Human-review reason]
+    D --> H[Evaluation checks]
+    E --> H
+    F --> H
+    G --> H
+    H --> I[Reviewable civic output]
+```
 
 To run the Claude summarizer:
 
@@ -123,30 +153,30 @@ The point is not only to collect data, but to make legislative information easie
 
 ```text
 civic-legislation-data-pipeline/
-│
+|
 ├── CLAUDE.md
 ├── README.md
 ├── requirements.txt
-│
+|
 ├── data/
-│   ├── sample_bills_raw.csv
-│   └── sample_bills_structured.csv
-│
+|   ├── sample_bills_raw.csv
+|   └── sample_bills_structured.csv
+|
 ├── docs/
-│   ├── architecture.md
-│   └── data_dictionary.md
-│
+|   ├── architecture.md
+|   └── data_dictionary.md
+|
 ├── evaluation/
-│   └── expected_summary_checks.csv
-│
+|   └── expected_summary_checks.csv
+|
 ├── outputs/
-│   ├── claude_summary_examples.csv
-│   ├── structured_bill_output.csv
-│   └── summary_evaluation_results.csv
-│
+|   ├── claude_summary_examples.csv
+|   ├── structured_bill_output.csv
+|   └── summary_evaluation_results.csv
+|
 ├── prompts/
-│   └── bill_summarization_prompt.md
-│
+|   └── bill_summarization_prompt.md
+|
 └── src/
     ├── claude_bill_summarizer.py
     ├── evaluate_summaries.py
@@ -228,6 +258,19 @@ The evaluation checks include:
 - Whether the human-review flag matches the expected review setting
 
 The purpose is to show that AI-generated civic information should be tested and reviewed, not accepted automatically.
+
+## Evaluation at a glance
+
+```mermaid
+flowchart TD
+    A[Claude summary output] --> B{Policy area matches?}
+    A --> C{Expected concept present?}
+    A --> D{Human-review flag correct?}
+    B --> E[Evaluation result]
+    C --> E
+    D --> E
+    E --> F[Passes basic checks or needs review]
+```
 
 ## Responsible AI and civic-data approach
 

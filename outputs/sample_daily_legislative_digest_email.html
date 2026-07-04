@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sample Daily Legislative Digest Email</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 32px;
+      background: #f3f4f6;
+      font-family: Arial, Helvetica, sans-serif;
+      color: #1f2937;
+    }
+
+    .email-shell {
+      max-width: 900px;
+      margin: 0 auto;
+      background: #ffffff;
+      border: 1px solid #d1d5db;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    }
+
+    .email-topbar {
+      background: #f9fafb;
+      border-bottom: 1px solid #e5e7eb;
+      padding: 18px 24px;
+    }
+
+    .email-subject {
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 14px;
+      color: #111827;
+    }
+
+    .meta-row {
+      display: flex;
+      margin-bottom: 8px;
+      font-size: 14px;
+      line-height: 1.4;
+    }
+
+    .meta-label {
+      width: 70px;
+      color: #6b7280;
+      font-weight: 600;
+      flex-shrink: 0;
+    }
+
+    .meta-value {
+      color: #111827;
+    }
+
+    .email-body {
+      padding: 28px 32px 36px 32px;
+      line-height: 1.6;
+      font-size: 15px;
+    }
+
+    .intro {
+      margin-bottom: 24px;
+    }
+
+    .note-box {
+      background: #f9fafb;
+      border: 1px solid #e5e7eb;
+      border-left: 4px solid #2563eb;
+      border-radius: 8px;
+      padding: 14px 16px;
+      margin: 20px 0 28px 0;
+      font-size: 14px;
+    }
+
+    .bill-card {
+      border: 1px solid #e5e7eb;
+      border-radius: 10px;
+      padding: 18px 18px 14px 18px;
+      margin-bottom: 18px;
+      background: #ffffff;
+    }
+
+    .bill-title {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      color: #111827;
+    }
+
+    .bill-meta {
+      display: grid;
+      grid-template-columns: 170px 1fr;
+      row-gap: 6px;
+      column-gap: 10px;
+      margin-bottom: 12px;
+      font-size: 14px;
+    }
+
+    .bill-meta-label {
+      color: #6b7280;
+      font-weight: 600;
+    }
+
+    .bill-meta-value a {
+      color: #2563eb;
+      text-decoration: none;
+    }
+
+    .bill-meta-value a:hover {
+      text-decoration: underline;
+    }
+
+    .summary-box {
+      background: #f9fafb;
+      border-radius: 8px;
+      padding: 12px 14px;
+      margin-top: 8px;
+      margin-bottom: 10px;
+    }
+
+    .summary-label,
+    .review-label {
+      font-weight: 700;
+      margin-bottom: 6px;
+      color: #111827;
+    }
+
+    .review-note {
+      font-size: 14px;
+      color: #374151;
+    }
+
+    .status-pill {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+      background: #fef3c7;
+      color: #92400e;
+    }
+
+    .checklist {
+      margin-top: 28px;
+      padding: 18px 18px 18px 22px;
+      background: #f9fafb;
+      border: 1px solid #e5e7eb;
+      border-radius: 10px;
+    }
+
+    .checklist h3 {
+      margin-top: 0;
+      margin-bottom: 12px;
+      font-size: 17px;
+    }
+
+    .checklist ul {
+      margin: 0;
+      padding-left: 20px;
+    }
+
+    .footer-note {
+      margin-top: 28px;
+      font-size: 13px;
+      color: #6b7280;
+      border-top: 1px solid #e5e7eb;
+      padding-top: 18px;
+    }
+  </style>
+</head>
+<body>
+  <div class="email-shell">
+    <div class="email-topbar">
+      <div class="email-subject">Daily Legislative Digest: Bills Ready for Review</div>
+
+      <div class="meta-row">
+        <div class="meta-label">From:</div>
+        <div class="meta-value">Legislative Data Pipeline Demo</div>
+      </div>
+      <div class="meta-row">
+        <div class="meta-label">To:</div>
+        <div class="meta-value">Civic Data Review Team</div>
+      </div>
+      <div class="meta-row">
+        <div class="meta-label">Date:</div>
+        <div class="meta-value">Sample date</div>
+      </div>
+    </div>
+
+    <div class="email-body">
+      <div class="intro">
+        Hi team,
+        <br><br>
+        Below is today’s sample digest of legislative records that may be ready for review.
+      </div>
+
+      <div class="note-box">
+        This is a sanitized example email generated from structured bill data.
+        AI-assisted summaries should be treated as drafts until reviewed against the source record.
+      </div>
+
+      <div class="bill-card">
+        <div class="bill-title">1. HB 101 — Community Health Access Act</div>
+        <div class="bill-meta">
+          <div class="bill-meta-label">Policy area</div>
+          <div class="bill-meta-value">Health</div>
+
+          <div class="bill-meta-label">Status</div>
+          <div class="bill-meta-value"><span class="status-pill">In committee</span></div>
+
+          <div class="bill-meta-label">Source</div>
+          <div class="bill-meta-value"><a href="https://example.gov/bills/HB101">https://example.gov/bills/HB101</a></div>
+
+          <div class="bill-meta-label">Review status</div>
+          <div class="bill-meta-value">Needs human review</div>
+        </div>
+
+        <div class="summary-box">
+          <div class="summary-label">Plain-English summary</div>
+          <div>
+            This bill appears to expand access to community health resources and create reporting
+            requirements for coordination between public agencies.
+          </div>
+        </div>
+
+        <div class="review-label">Human-review reason</div>
+        <div class="review-note">
+          The source description is high-level and may omit important bill details.
+        </div>
+      </div>
+
+      <div class="bill-card">
+        <div class="bill-title">2. SB 204 — Small Business Permit Modernization Act</div>
+        <div class="bill-meta">
+          <div class="bill-meta-label">Policy area</div>
+          <div class="bill-meta-value">Economic development</div>
+
+          <div class="bill-meta-label">Status</div>
+          <div class="bill-meta-value"><span class="status-pill">Passed chamber</span></div>
+
+          <div class="bill-meta-label">Source</div>
+          <div class="bill-meta-value"><a href="https://example.gov/bills/SB204">https://example.gov/bills/SB204</a></div>
+
+          <div class="bill-meta-label">Review status</div>
+          <div class="bill-meta-value">Needs human review</div>
+        </div>
+
+        <div class="summary-box">
+          <div class="summary-label">Plain-English summary</div>
+          <div>
+            This bill appears to modernize small-business permitting by simplifying application
+            processes and requiring digital submission options.
+          </div>
+        </div>
+
+        <div class="review-label">Human-review reason</div>
+        <div class="review-note">
+          The source description does not include implementation details or exceptions.
+        </div>
+      </div>
+
+      <div class="bill-card">
+        <div class="bill-title">3. HB 315 — Public Transit Safety and Access Act</div>
+        <div class="bill-meta">
+          <div class="bill-meta-label">Policy area</div>
+          <div class="bill-meta-value">Transportation</div>
+
+          <div class="bill-meta-label">Status</div>
+          <div class="bill-meta-value"><span class="status-pill">Introduced</span></div>
+
+          <div class="bill-meta-label">Source</div>
+          <div class="bill-meta-value"><a href="https://example.gov/bills/HB315">https://example.gov/bills/HB315</a></div>
+
+          <div class="bill-meta-label">Review status</div>
+          <div class="bill-meta-value">Needs human review</div>
+        </div>
+
+        <div class="summary-box">
+          <div class="summary-label">Plain-English summary</div>
+          <div>
+            This bill appears to focus on transit safety, service access, and reporting on
+            transportation infrastructure needs.
+          </div>
+        </div>
+
+        <div class="review-label">Human-review reason</div>
+        <div class="review-note">
+          Transportation bills can affect multiple agencies and funding streams, so the output
+          should be checked against the full source record.
+        </div>
+      </div>
+
+      <div class="bill-card">
+        <div class="bill-title">4. SB 410 — Housing Redevelopment Incentive Act</div>
+        <div class="bill-meta">
+          <div class="bill-meta-label">Policy area</div>
+          <div class="bill-meta-value">Housing</div>
+
+          <div class="bill-meta-label">Status</div>
+          <div class="bill-meta-value"><span class="status-pill">In committee</span></div>
+
+          <div class="bill-meta-label">Source</div>
+          <div class="bill-meta-value"><a href="https://example.gov/bills/SB410">https://example.gov/bills/SB410</a></div>
+
+          <div class="bill-meta-label">Review status</div>
+          <div class="bill-meta-value">Needs human review</div>
+        </div>
+
+        <div class="summary-box">
+          <div class="summary-label">Plain-English summary</div>
+          <div>
+            This bill appears to encourage redevelopment of underused properties for housing and
+            mixed-use community development.
+          </div>
+        </div>
+
+        <div class="review-label">Human-review reason</div>
+        <div class="review-note">
+          The source description does not specify the incentive structure or covered properties.
+        </div>
+      </div>
+
+      <div class="checklist">
+        <h3>Review checklist</h3>
+        <ul>
+          <li>Confirm the bill title and number against the source record</li>
+          <li>Check whether the status is current</li>
+          <li>Review the plain-English summary for overstatement</li>
+          <li>Confirm the policy area is appropriate</li>
+          <li>Preserve the source URL</li>
+          <li>Mark uncertain items for human review</li>
+        </ul>
+      </div>
+
+      <div class="footer-note">
+        This sample email is designed to demonstrate workflow output, not to represent a live production email.
+      </div>
+    </div>
+  </div>
+</body>
+</html>
